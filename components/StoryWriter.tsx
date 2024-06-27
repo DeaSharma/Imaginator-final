@@ -10,6 +10,9 @@ import { useState } from "react";
 function StoryWriter() {
   const [story, setStory] = useState<string>("");
   const [pages, setPages] = useState<number>();
+  const [progress, setProgress] = useState("");
+  const [runStarted, setRunStarted] = useState<boolean>(false);
+  const [runFinished, setRunFinished] = useState<boolean | null>(null); 
 
   return (
     <div className="flex flex-col container">
@@ -34,12 +37,28 @@ function StoryWriter() {
             </SelectContent>
         </Select>
 
-        <Button disabled={!story || !pages} className="w-full" size="lg" >
+        <Button disabled={!story || !pages}className="w-full" size="lg" >
           Create the imaginary world
         </Button>
       </section>
 
-      <section  className="flex-1 pb-5 mt-5"></section> 
+      <section  className="flex-1 pb-5 mt-5">
+        <div className="flex flex-col-reverse w-full space-y-2 bg-blue-300 rounded-md text-black font-mono p-10 h-96 overflow-y-auto">
+            <div>
+               {runFinished === null && (
+                   <>
+                  <p className="animate-pulse mr-5">
+                    I'm waiting for you to create your world of imagination above...
+                  </p>
+                  <br />
+                  </>
+               )}
+
+              <span className="mr-5">{">"}</span>
+               {progress}
+            </div>
+        </div>
+      </section> 
     </div>
   );
 }
