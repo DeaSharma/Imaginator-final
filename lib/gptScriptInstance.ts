@@ -1,7 +1,7 @@
 import { GPTScript } from "@gptscript-ai/gptscript";
 
 const g = new GPTScript({
-    APIKey: process.env.OPEN_API_KEY,
+    APIKey: process.env.OPENAI_API_KEY,
 });
 
 export default g;
